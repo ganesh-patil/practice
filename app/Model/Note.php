@@ -1,17 +1,18 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * User Model
+ * Note Model
  *
  */
-class User extends AppModel {
+class Note extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	 var $name = 'User';
+	
+    var $name = 'User';
     var $belongsTo = array('Group');
     var $actsAs = array('Acl' => array('requester'));
  
@@ -25,12 +26,6 @@ class User extends AppModel {
         } else {
             return array('model' => 'Group', 'foreign_key' => $data['User']['group_id']);
         }
-    }
-	public function beforeSave($options = array()) {
-    if (isset($this->data[$this->alias]['password'])) {
-        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-    }
-    return true;
-}
+    }public $displayField = 'title';
 
 }
